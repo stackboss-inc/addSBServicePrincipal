@@ -49,7 +49,7 @@ Write-Host "Your tenant ID:"
 Write-Host ""
 
 Write-Host "Your service principal's application ID:"
-(Get-AzADServicePrincipal -DisplayName stackBossServicePrincipal).ApplicationId.ToString()
+(Get-AzADServicePrincipal -DisplayName $spName).ApplicationId.ToString()
 Write-Host ""
 
 Write-Host "Your service principal's secret:"
