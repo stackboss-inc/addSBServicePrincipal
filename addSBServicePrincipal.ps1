@@ -16,8 +16,13 @@ if ((Get-AzContext).Subscription.Id -eq $null) {
 }
 
 Write-Host "This next warning is normal."
+
+$startDate = Get-Date
+$endDate = Get-Date -Year 2035
+$spName = "stackBossServicePrincipal" + $([DateTimeOffset]::Now.ToUnixTimeSeconds())
+
 # create a new service principal, stackBossServicePrincipal
-$sp = New-AzADServicePrincipal -DisplayName stackBossServicePrincipal
+$sp = New-AzADServicePrincipal -DisplayName $spName -StartDate $startDate -EndDate $endDate
 
 Write-Host "A bunch of text is displayed as permissions are granted on each subscription."
 Write-Host "The information you'll need to copy/paste is displayed at the end."
