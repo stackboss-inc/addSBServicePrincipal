@@ -7,7 +7,7 @@ Write-Host "(the Import-Module Az & Connect-AzAccount cmdlets take a moment; sit
 Write-Host ""
 
 # run 'Install-Module Az' if the Az module isn't already installed on your system
-Import-Module Az
+# Import-Module Az
 Connect-AzAccount
 if ((Get-AzContext).Subscription.Id -eq $null) {
 	foreach ($subscription in Get-AzSubscription) {
