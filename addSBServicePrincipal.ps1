@@ -7,7 +7,7 @@ Write-Host "(the Import-Module Az & Connect-AzAccount cmdlets take a moment; sit
 Write-Host ""
 
 # run 'Install-Module Az' if the Az module isn't already installed on your system
-# Import-Module Az
+Import-Module Az
 Connect-AzAccount
 if ((Get-AzContext).Subscription.Id -eq $null) {
 	foreach ($subscription in Get-AzSubscription) {
@@ -35,8 +35,7 @@ foreach ($subscription in Get-AzSubscription) {
 }
 
 # make the service principal secret printable; it isn't viewable again
-$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($sp.Secret)
-$UnsecureSecret = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+$sp.PasswordCredentials.SecretText
 
 # print the info that needs to get copy/pasted into StackBoss
 Write-Host "****************************************"
@@ -49,8 +48,8 @@ Write-Host "Your tenant ID:"
 Write-Host ""
 
 Write-Host "Your service principal's application ID:"
-(Get-AzADServicePrincipal -DisplayName $spName).ApplicationId.ToString()
+(Get-AzADServicePrincipal -DisplayName $spName).AppId
 Write-Host ""
 
 Write-Host "Your service principal's secret:"
-$UnsecureSecret
+$sp.PasswordCredentials.SecretText
