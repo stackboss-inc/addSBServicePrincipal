@@ -34,9 +34,6 @@ foreach ($subscription in Get-AzSubscription) {
 	}
 }
 
-# make the service principal secret printable; it isn't viewable again
-$sp.PasswordCredentials.SecretText
-
 # print the info that needs to get copy/pasted into StackBoss
 Write-Host "****************************************"
 Write-Host "Take note of the following information for entry into StackBoss:"
