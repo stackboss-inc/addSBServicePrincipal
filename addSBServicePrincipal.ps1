@@ -41,7 +41,8 @@ Write-Host "****************************************"
 Write-Host ""
 
 Write-Host "Your tenant ID:"
-(Get-AzContext).Tenant.Id
+#(Get-AzContext).Tenant.Id
+Get-AzTenant | Select Id
 Write-Host ""
 
 Write-Host "Your service principal's application ID:"
