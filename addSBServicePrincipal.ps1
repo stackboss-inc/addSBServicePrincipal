@@ -29,9 +29,7 @@ Write-Host "The information you'll need to copy/paste is displayed at the end."
 
 # grant permissions to this new service principal on each subscription
 foreach ($subscription in Get-AzSubscription) {
-	if ((Get-AzContext).Subscription.Id -ne $subscription.Id) { # the default subscription already has the right role
-		New-AzRoleAssignment -ObjectId $sp.Id -RoleDefinitionName Contributor -Scope /subscriptions/$subscription
-	}
+	New-AzRoleAssignment -ObjectId $sp.Id -RoleDefinitionName Contributor -Scope /subscriptions/$subscription
 }
 
 # print the info that needs to get copy/pasted into StackBoss
